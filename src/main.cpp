@@ -13,25 +13,25 @@ esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
     switch (event->event_id) {
         case MQTT_EVENT_CONNECTED://MQTT连上事件
             Serial.printf("MQTT_EVENT_CONNECTED\n");
-            msg_id = esp_mqtt_client_subscribe(client, "/topic/iot_factory_monitor", 1);
-            ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
+            msg_id = esp_mqtt_client_subscribe(client, "/topic/iot_monitor", 1);
+            // ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_DISCONNECTED://MQTT断开连接事件
-            ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
+            // ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
             break;
         case MQTT_EVENT_SUBSCRIBED://MQTT发送订阅事件
-            ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
-            msg_id = esp_mqtt_client_publish(client, "/topic/iot_factory_monitor", "订阅成功", 0, 0, 0);
-            ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
+            // ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
+            msg_id = esp_mqtt_client_publish(client, "/topic/iot_monitor", "订阅成功", 0, 0, 0);
+            // ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_UNSUBSCRIBED://MQTT取消订阅事件
-            ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
+            // ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
             break;
         case MQTT_EVENT_PUBLISHED://MQTT发布事件
-            ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
+            // ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
             break;
         case MQTT_EVENT_DATA://MQTT接受数据事件
-            ESP_LOGI(TAG, "MQTT_EVENT_DATA");
+            // ESP_LOGI(TAG, "MQTT_EVENT_DATA");
             printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);   //主题
             printf("DATA=%.*s\r\n", event->data_len, event->data);      //内容
             break;
